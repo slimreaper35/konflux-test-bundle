@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: echo
+  labels:
+    app.kubernetes.io/version: 0.1.0
+spec:
+  description: Test SHOULD_RELEASE pipeline result
+  params:
+    - name: message
+      description: The message to print
+      type: string
+      default: hello world
+  steps:
+    - name: echo
+      image: registry.access.redhat.com/ubi10-micro@sha256:cabedb588644e9da2c95ebb173a67b78d58aaedcb0eaa42a86f880bcef8a0b2f
+      env:
+        - name: MESSAGE
+          value: $(params.message)
+      script: |
+        #!/usr/bin/env bash
+
+        echo "${MESSAGE}"
