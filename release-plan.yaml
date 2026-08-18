@@ -1,0 +1,20 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ReleasePlan
+metadata:
+  name: my-release-plan
+  labels:
+    release.appstudio.openshift.io/auto-release: "true"
+spec:
+  application: konflux-test-bundle
+  tenantPipeline:
+    pipelineRef:
+      resolver: git
+      params:
+        - name: url
+          value: "https://github.com/slimreaper35/konflux-test-bundle.git"
+        - name: revision
+          value: main
+        - name: pathInRepo
+          value: "pipeline.yaml"
+      useEmptyDir: true
+    serviceAccountName: build-pipeline-konflux-test-bundle

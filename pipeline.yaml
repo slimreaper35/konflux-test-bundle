@@ -1,0 +1,37 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: my-release-pipeline
+spec:
+  params:
+    - name: release
+      type: string
+    - name: releasePlan
+      type: string
+    - name: snapshot
+      type: string
+  tasks:
+    - name: my-task
+      params:
+        - name: release
+          value: $(params.release)
+        - name: snapshot
+          value: $(params.snapshot)
+      taskSpec:
+        params:
+          - name: release
+            type: string
+          - name: snapshot
+            type: string
+        steps:
+          - name: echo
+            image: registry.access.redhat.com/ubi10/ubi-minimal:latest
+            env:
+              - name: RELEASE
+                value: $(params.release)
+              - name: SNAPSHOT
+                value: $(params.snapshot)
+            script: |
+              #!/usr/bin/env bash
+              set -euo pipefail
+              echo "release=${RELEASE} snapshot=${SNAPSHOT}"
