@@ -19,5 +19,5 @@ spec:
           value: $(params.message)
       script: |
         #!/usr/bin/env bash
-
+        set -euo pipefail
         echo "${MESSAGE}"
