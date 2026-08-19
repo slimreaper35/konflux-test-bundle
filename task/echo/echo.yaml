@@ -20,4 +20,6 @@ spec:
       script: |
         #!/usr/bin/env bash
         set -euo pipefail
+
         echo "${MESSAGE}"
+        echo "Done"
