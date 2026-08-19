@@ -186,7 +186,7 @@ spec:
         - name: name
           value: tkn-bundle-oci-ta
         - name: bundle
-          value: quay.io/rh-ee-msoltis/catalog:my-tkn-bundle-oci-ta-fix
+          value: quay.io/rh-ee-msoltis/catalog:my-tkn-bundle-oci-ta
         - name: kind
           value: task
         resolver: bundles
